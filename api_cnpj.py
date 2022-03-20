@@ -1,20 +1,16 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Nov 19 21:24:27 2021
+Created on Sun Mar 20 15:50:54 2022
 
-@author: ruran
+@author: brunomneto
 """
 
 import requests
-# import json
-# from tkinter import *
 
 def consulta():
-    
-    consulta = True
-    
-    while consulta == True:
-        cnpj = str(input('Digite o CNPJ a ser consultado: '))
+     
+    while True:
+        cnpj = str(input('\nDigite o CNPJ a ser consultado: '))
         
         info = requests.get('https://www.receitaws.com.br/v1/cnpj/' + cnpj)
         
@@ -30,6 +26,7 @@ def consulta():
                      'numero','bairro','municipio','uf','cep','telefone']
         
             x = 0
+            print('\n' + '-' * 50)
             for i in lista:
                 nome = lista[x]
                 print('{}:'.format(nome.capitalize().replace('_',' ')), info_cnpj[i])
@@ -41,19 +38,16 @@ def consulta():
             if info_cnpj['natureza_juridica'][0:5] == '213-5':
                 print('CNPJ é MEI')
             
-            while True:
+            novaconsulta = str(input('\nDeseja fazer uma nova consulta? [S/N] ').strip().upper())
+
+            while novaconsulta not in 'SN':
+                novaconsulta = str(input('Resposta inválida. Deseja fazer uma nova consulta? [S/N] - ')).strip().upper()
+
+            if novaconsulta == 'S':
+                continue
             
-                novaconsulta = str(input('Deseja fazer uma nova consulta? [S/N] ').strip().upper())    
-                
-                if novaconsulta == 'S':
-                    break
-                
-                elif novaconsulta == 'N':
-                    consulta = False
-                    break
-                
-                else:
-                    print('Comando inválido')
-                    continue
+            else:
+                break
+
 
 consulta()
