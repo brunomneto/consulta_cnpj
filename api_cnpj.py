@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
+
 """
 Created on Sun Mar 20 15:50:54 2022
-
 @author: brunomneto
 """
 
