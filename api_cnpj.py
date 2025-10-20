@@ -18,7 +18,7 @@ def consulta():
         info_cnpj = info.json()
         
         if info_cnpj['status'] != 'OK':
-            print('Erro na consulta. Tente novamente.')
+            print('Erro na consulta. Tente novamente.') #msg erro na consulta
         
         else:
             lista = ['nome','natureza_juridica','abertura','situacao','logradouro',
